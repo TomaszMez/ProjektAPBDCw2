@@ -21,6 +21,15 @@ public static class UserManager
         return new User(fields[0], fields[1], (UserType) ut);
     }
 
+    public static User GetUserById(int id)
+    {
+        foreach (User user in Users)
+        {
+            if (user.Id == id) return user;
+        }
+        return null;
+    }
+    
     public static void RemoveUserById(int id)
     {
         foreach (User user in Users)
