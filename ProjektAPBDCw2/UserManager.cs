@@ -27,7 +27,7 @@ public static class UserManager
         {
             if (user.Id == id) return user;
         }
-        return null;
+        throw new Exception("User not found");
     }
     
     public static void RemoveUserById(int id)
