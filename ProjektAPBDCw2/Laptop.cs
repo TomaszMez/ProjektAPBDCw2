@@ -11,6 +11,12 @@ public class Laptop : Device
         HasWebcam = hasWebcam;
     }
 
+    public Laptop(Laptop other) : base(other)
+    {
+        BatteryTime = other.BatteryTime;
+        HasWebcam = other.HasWebcam;
+    }
+
     public override string ToString()
     {
         return $"ID: {Id}, Typ: Laptop, Nazwa: {Name}, Producent: {Manufacturer}, Cena (PLN): {Price}, Czas Baterii (h): {BatteryTime}, Kamerka: " + (HasWebcam ? "Tak" : "Nie")

@@ -10,6 +10,12 @@ public class Camera : Device
         Resolution = resolution;
         LensExchangeable = lensExchangeable;
     }
+
+    public Camera(Camera other) : base(other)
+    {
+        Resolution = other.Resolution;
+        LensExchangeable = other.LensExchangeable;
+    }
     
     public override string ToString()
     {

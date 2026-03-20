@@ -10,6 +10,12 @@ public class Projector : Device
         Brightness = brightness;
         MaxRange = maxRange;
     }
+
+    public Projector(Projector other) : base(other)
+    {
+        Brightness = other.Brightness;
+        MaxRange = other.MaxRange;
+    }
     
     public override string ToString()
     {
