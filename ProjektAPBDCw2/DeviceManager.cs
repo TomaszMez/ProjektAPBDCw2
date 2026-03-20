@@ -74,4 +74,16 @@ public static class DeviceManager
         }
     }
     
+    public static void SetDeviceAvailableById(int id, bool available)
+    {
+        foreach (Device device in devices)
+        {
+            if (device.Id == id)
+            {
+                device.Available =available;
+                return;
+            }
+        }
+    }
+    
 }

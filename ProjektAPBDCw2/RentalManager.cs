@@ -14,8 +14,20 @@ public static class RentalManager
 
     public static void AddRental(Rental rental)
     {
-        if (IsRentalValid(rental)) rentals.Add(rental);
+        if (!IsRentalValid(rental)) throw new Exception("Niewlasciwe wypozyczenie");
+            
+        rentals.Add(rental);
+        DeviceManager.SetDeviceAvailableById(rental.DeviceId, true);
+    }
+
+    public static void EndRental(int userId, int deviceId)
+    {
+        Rental? rental = GetExactRental(userId, deviceId);
+        if (rental == null) throw new Exception("Nie ma takiego wypozyczenia");
+        else if (rental.ActualReturnDate != null) throw new Exception("To wypozyczenie juz sie zakonczylo");
         
+        rental.ReturnDevice();
+        DeviceManager.SetDeviceAvailableById(rental.DeviceId, false);
     }
 
     public static List<Rental> GetRentalsCopy()
@@ -78,6 +90,19 @@ public static class RentalManager
             }
         }
         return result;
+    }
+    
+    private static Rental? GetExactRental(int userId, int deviceId)
+    {
+        foreach (Rental rental in rentals)
+        {
+            if (rental.UserId == userId && rental.DeviceId == deviceId)
+            {
+                return rental;
+            }
+        }
+
+        return null;
     }
 
     private static bool IsRentalValid(Rental rental)
