@@ -91,11 +91,11 @@ public static class DeviceManager
     
     public static void RemoveDeviceById(int id)
     {
-        foreach (Device device in devices)
+        for (int i = 0; i < devices.Count; i++)
         {
-            if (device.Id == id)
+            if (devices[i].Id == id)
             {
-                devices.Remove(device);
+                devices.RemoveAt(i);
                 return;
             }
         }

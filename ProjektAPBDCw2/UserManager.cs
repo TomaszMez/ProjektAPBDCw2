@@ -69,11 +69,11 @@ public static class UserManager
     
     public static void RemoveUserById(int id)
     {
-        foreach (User user in users)
+        for (int i = 0; i < users.Count; i++)
         {
-            if (user.Id == id)
+            if (users[i].Id == id)
             {
-                users.Remove(user);
+                users.RemoveAt(i);
                 return;
             }
         }
