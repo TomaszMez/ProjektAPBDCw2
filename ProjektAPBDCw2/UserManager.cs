@@ -21,6 +21,28 @@ public static class UserManager
         return new User(fields[0], fields[1], (UserType) ut);
     }
 
+    public static void AddUser(User user)
+    {
+        try
+        {
+            GetUserById(user.Id);
+        } catch (Exception e)
+        {
+            users.Add(user);
+        }
+        throw new Exception("Juz istnieje uzytkownik o tym id");
+    }
+
+    public static List<User> GetUsersCopy()
+    {
+        List<User> result = new List<User>();
+        foreach (User user in users)
+        {
+            result.Add(new User(user));
+        }
+        return result;
+    }
+    
     public static User GetUserById(int id)
     {
         foreach (User user in users)
