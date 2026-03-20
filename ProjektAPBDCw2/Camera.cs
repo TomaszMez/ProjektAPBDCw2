@@ -10,4 +10,9 @@ public class Camera : Device
         Resolution = resolution;
         LensExchangeable = lensExchangeable;
     }
+    
+    public override string ToString()
+    {
+        return $"Typ: Aparat, Nazwa: {Name}, Producent: {Manufacturer}, Cena: {Price}, Rozdzielczosc (mp): {Resolution}, Wymienny obiektyw: " + (LensExchangeable ? "Tak" : "Nie");
+    }
 }

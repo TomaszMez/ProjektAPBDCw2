@@ -10,4 +10,9 @@ public class Laptop : Device
         BatteryTime = batteryTime;
         HasWebcam = hasWebcam;
     }
+
+    public override string ToString()
+    {
+        return $"Typ: Laptop, Nazwa: {Name}, Producent: {Manufacturer}, Cena: {Price}, Czas Baterii (h): {BatteryTime}, Kamerka: " + (HasWebcam ? "Tak" : "Nie");
+    }
 }

@@ -10,4 +10,9 @@ public class Projector : Device
         Brightness = brightness;
         MaxRange = maxRange;
     }
+    
+    public override string ToString()
+    {
+        return $"Typ: Projektor, Nazwa: {Name}, Producent: {Manufacturer}, Cena: {Price}, Jasnosc (lm): {Brightness}, Maks. Zasieg: {MaxRange}";
+    }
 }

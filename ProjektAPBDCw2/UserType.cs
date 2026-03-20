@@ -13,7 +13,7 @@ public static class UserTypeExtensions
         return userType switch
         {
             UserType.Student => "Student",
-            UserType.Employee => "Employee",
+            UserType.Employee => "Pracownik",
             _ => throw new ArgumentOutOfRangeException(nameof(userType), userType, null)
         };
     }

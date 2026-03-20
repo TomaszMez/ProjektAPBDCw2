@@ -41,5 +41,10 @@ public class Rental
         }
         else IsOnTime = true;
     }
+
+    public override string ToString()
+    {
+        return $"UID: {UserId}, DID: {DeviceId}, Data: {RentalDate}, Termin: {AgreedReturnDate}, Zwrot: {ActualReturnDate}, Na czas: {IsOnTime}, Kara: {Penalty}";
+    }
     
 }

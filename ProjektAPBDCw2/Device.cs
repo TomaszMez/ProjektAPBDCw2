@@ -36,4 +36,6 @@ public abstract class Device
                 throw new Exception("Nieznany typ urzadzenia");
         }
     }
+    
+    public abstract override string ToString();
 }

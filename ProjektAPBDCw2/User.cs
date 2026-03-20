@@ -27,6 +27,6 @@ public class User
 
     public override string ToString()
     {
-        return $"{Id} {Name} {Surname} {UserType}";
+        return $"ID: {Id}, Imie: {Name}, Nazwisko: {Surname}, Typ: {UserType}";
     }
 }
