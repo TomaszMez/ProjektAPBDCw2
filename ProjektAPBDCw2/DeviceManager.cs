@@ -57,13 +57,13 @@ public static class DeviceManager
         return result;
     }
 
-    public static Device GetDeviceById(int id)
+    public static Device? GetDeviceById(int id)
     {
         foreach (Device device in devices)
         {
             if (device.Id == id) return Device.DeepCopyDevice(device);
         }
-        throw new Exception("Device not found");
+        return null;
     }
     
     public static void RemoveDeviceById(int id)

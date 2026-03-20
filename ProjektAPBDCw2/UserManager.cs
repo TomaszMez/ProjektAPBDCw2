@@ -43,13 +43,14 @@ public static class UserManager
         return result;
     }
     
-    public static User GetUserById(int id)
+    public static User? GetUserById(int id)
     {
         foreach (User user in users)
         {
             if (user.Id == id) return new User(user);
         }
-        throw new Exception("User not found");
+
+        return null;
     }
     
     public static void RemoveUserById(int id)

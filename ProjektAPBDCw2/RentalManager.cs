@@ -54,7 +54,7 @@ public static class RentalManager
         return result;
     }
 
-    public static Rental GetExactRentalCopy(int userId, int deviceId)
+    public static Rental? GetExactRentalCopy(int userId, int deviceId)
     {
         foreach (Rental rental in rentals)
         {
@@ -63,7 +63,8 @@ public static class RentalManager
                 return new Rental(rental);
             }
         }
-        throw new Exception("Rental not found");
+
+        return null;
     }
 
     public static List<Rental> GetExpiredRentalsCopy()
@@ -98,8 +99,10 @@ public static class RentalManager
             if (existing.UserId == rental.UserId && existing.DeviceId == rental.DeviceId) return false;
         }
 
-        UserType ut = UserManager.GetUserById(rental.UserId).UserType;
-        switch (ut)
+        User user = UserManager.GetUserById(rental.UserId);
+        if (user == null) return false;
+        
+        switch (user.UserType)
         {
             case UserType.Student:
                 if (GetRentalsCopyByUserId(rental.UserId).Count >= 3)
