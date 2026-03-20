@@ -37,14 +37,10 @@ public static class DeviceManager
     
     public static void AddDevice(Device device)
     {
-        try
-        {
-            GetDeviceById(device.Id);
-        } catch (Exception e)
-        {
-            devices.Add(device);
-        }
-        throw new Exception("Juz istnieje urzadzenie o tym id");
+        
+        if (GetDeviceById(device.Id)!=null) throw new Exception("Juz istnieje urzadzenie o tym id");
+        
+        devices.Add(device);
     }
 
     public static List<Device> GetDevicesCopy()

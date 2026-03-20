@@ -23,14 +23,9 @@ public static class UserManager
 
     public static void AddUser(User user)
     {
-        try
-        {
-            GetUserById(user.Id);
-        } catch (Exception e)
-        {
-            users.Add(user);
-        }
-        throw new Exception("Juz istnieje uzytkownik o tym id");
+        if (GetUserById(user.Id)!=null) throw new Exception("Juz istnieje uzytkownik o tym id");
+        
+        users.Add(user);
     }
 
     public static List<User> GetUsersCopy()
