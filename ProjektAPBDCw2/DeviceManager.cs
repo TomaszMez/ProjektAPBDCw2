@@ -1,7 +1,7 @@
 ﻿namespace ProjektAPBDCw2;
 
 
-public static class UserManager
+public static class DeviceManager
 {
     public static List<Device> devices = new List<Device>();
 
