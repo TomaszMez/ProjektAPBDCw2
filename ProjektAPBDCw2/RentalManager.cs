@@ -8,20 +8,14 @@ public static class RentalManager
     {
         string[] fields = inputStr.Split(' ');
         if (fields.Length != 4) throw new Exception("Invalid input");
-
-        try
-        {
-            UserManager.GetUserById(int.Parse(fields[0]));
-            //DeviceManager.GetDeviceById(int.Parse(fields[1]));
-        }
-        catch (Exception e)
-        {
-            throw new Exception("Invalid input");
-        }
-        
-        if (DateTime.Parse(fields[2]) <= DateTime.Parse(fields[3])) throw new Exception("Invalid input");
         
         return new Rental(int.Parse(fields[0]), int.Parse(fields[1]), DateTime.Parse(fields[2]), DateTime.Parse(fields[3]));
+    }
+
+    public static void AddRental(Rental rental)
+    {
+        if (IsRentalValid(rental)) rentals.Add(rental);
+        
     }
 
     public static List<Rental> GetRentalsCopy()
@@ -83,6 +77,41 @@ public static class RentalManager
             }
         }
         return result;
+    }
+
+    private static bool IsRentalValid(Rental rental)
+    {
+        try
+        {
+            User? vu = UserManager.GetUserById(rental.UserId);
+            Device? vd = DeviceManager.GetDeviceById(rental.DeviceId);
+            
+            if (vu == null || vd == null || !vd.Available) return false;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+        
+        foreach (Rental existing in rentals)
+        {
+            if (existing.UserId == rental.UserId && existing.DeviceId == rental.DeviceId) return false;
+        }
+
+        UserType ut = UserManager.GetUserById(rental.UserId).UserType;
+        switch (ut)
+        {
+            case UserType.Student:
+                if (GetRentalsCopyByUserId(rental.UserId).Count >= 3)
+                    return false;
+                break;
+            case UserType.Employee:
+                if (GetRentalsCopyByDeviceId(rental.UserId).Count >= 5)
+                    return false;
+                break;
+        }
+
+        return true;
     }
     
 }
