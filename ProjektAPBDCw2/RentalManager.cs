@@ -17,7 +17,7 @@ public static class RentalManager
         if (!IsRentalValid(rental)) throw new Exception("Niewlasciwe wypozyczenie");
             
         rentals.Add(rental);
-        DeviceManager.SetDeviceAvailableById(rental.DeviceId, true);
+        DeviceManager.SetDeviceAvailableById(rental.DeviceId, false);
     }
 
     public static void EndRental(int userId, int deviceId)
@@ -27,7 +27,7 @@ public static class RentalManager
         else if (rental.ActualReturnDate != null) throw new Exception("To wypozyczenie juz sie zakonczylo");
         
         rental.ReturnDevice();
-        DeviceManager.SetDeviceAvailableById(rental.DeviceId, false);
+        DeviceManager.SetDeviceAvailableById(rental.DeviceId, true);
     }
 
     public static List<Rental> GetRentalsCopy()
