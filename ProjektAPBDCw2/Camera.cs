@@ -13,6 +13,7 @@ public class Camera : Device
     
     public override string ToString()
     {
-        return $"Typ: Aparat, Nazwa: {Name}, Producent: {Manufacturer}, Cena: {Price}, Rozdzielczosc (mp): {Resolution}, Wymienny obiektyw: " + (LensExchangeable ? "Tak" : "Nie");
+        return $"ID: {Id}, Typ: Aparat, Nazwa: {Name}, Producent: {Manufacturer}, Cena (PLN): {Price}, Rozdzielczosc (mp): {Resolution}, Wymienny obiektyw: " + (LensExchangeable ? "Tak" : "Nie")
+            + ", Dostepny: " + (Available ? "Tak" : "Nie");
     }
 }

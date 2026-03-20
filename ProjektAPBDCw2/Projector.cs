@@ -13,6 +13,7 @@ public class Projector : Device
     
     public override string ToString()
     {
-        return $"Typ: Projektor, Nazwa: {Name}, Producent: {Manufacturer}, Cena: {Price}, Jasnosc (lm): {Brightness}, Maks. Zasieg: {MaxRange}";
+        return $"ID: {Id}, Typ: Projektor, Nazwa: {Name}, Producent: {Manufacturer}, Cena (PLN): {Price}, Jasnosc (lm): {Brightness}, Maks. Zasieg: {MaxRange}"
+               + ", Dostepny: " + (Available ? "Tak" : "Nie");
     }
 }
