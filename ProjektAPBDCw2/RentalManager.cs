@@ -130,11 +130,11 @@ public static class RentalManager
         switch (user.UserType)
         {
             case UserType.Student:
-                if (GetRentalsCopyByUserId(rental.UserId).Count >= 3)
+                if (GetRentalsCopyByUserId(rental.UserId).Count >= 2)
                     return false;
                 break;
             case UserType.Employee:
-                if (GetRentalsCopyByDeviceId(rental.UserId).Count >= 5)
+                if (GetRentalsCopyByUserId(rental.UserId).Count >= 5)
                     return false;
                 break;
         }
