@@ -18,6 +18,17 @@ public class Rental
         AgreedReturnDate = agreedReturnDate;
     }
 
+    public Rental(Rental other)
+    {
+        UserId = other.UserId;
+        DeviceId = other.DeviceId;
+        RentalDate = other.RentalDate;
+        AgreedReturnDate = other.AgreedReturnDate;
+        ActualReturnDate = other.ActualReturnDate;
+        IsOnTime = other.IsOnTime;
+        Penalty = other.Penalty;
+    }
+
     public void ReturnDevice()
     {
         ActualReturnDate = DateTime.Now;
