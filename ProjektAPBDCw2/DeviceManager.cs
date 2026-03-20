@@ -34,6 +34,28 @@ public static class UserManager
                 throw new Exception("Invalid input");
         }
     }
+    
+    public static void AddDevice(Device device)
+    {
+        try
+        {
+            GetDeviceById(device.Id);
+        } catch (Exception e)
+        {
+            devices.Add(device);
+        }
+        throw new Exception("Juz istnieje urzadzenie o tym id");
+    }
+
+    public static List<Device> GetDevicesCopy()
+    {
+        List<Device> result = new List<Device>();
+        foreach (Device device in devices)
+        {
+            result.Add(Device.DeepCopyDevice(device));
+        }
+        return result;
+    }
 
     public static Device GetDeviceById(int id)
     {
