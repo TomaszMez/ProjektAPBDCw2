@@ -2,7 +2,7 @@
 
 public static class UserManager
 {
-    public static List<User> Users { get; } = new List<User>();
+    private static List<User> users = new List<User>();
 
     public static User StringToUser(String inputStr)
     {
@@ -23,20 +23,20 @@ public static class UserManager
 
     public static User GetUserById(int id)
     {
-        foreach (User user in Users)
+        foreach (User user in users)
         {
-            if (user.Id == id) return user;
+            if (user.Id == id) return new User(user);
         }
         throw new Exception("User not found");
     }
     
     public static void RemoveUserById(int id)
     {
-        foreach (User user in Users)
+        foreach (User user in users)
         {
             if (user.Id == id)
             {
-                Users.Remove(user);
+                users.Remove(user);
                 return;
             }
         }
