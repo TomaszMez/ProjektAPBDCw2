@@ -78,19 +78,6 @@ public static class RentalManager
 
         return null;
     }
-
-    public static List<Rental> GetExpiredRentalsCopy()
-    {
-        List<Rental> result = new List<Rental>();
-        foreach (Rental rental in rentals)
-        {
-            if (rental.AgreedReturnDate < DateTime.Now)
-            {
-                result.Add(new Rental(rental));
-            }
-        }
-        return result;
-    }
     
     private static Rental? GetExactRental(int userId, int deviceId)
     {
@@ -105,29 +92,29 @@ public static class RentalManager
         return null;
     }
 
+    public static List<Rental> GetExpiredRentalsCopy()
+    {
+        List<Rental> result = new List<Rental>();
+        foreach (Rental rental in rentals)
+        {
+            if (rental.AgreedReturnDate < DateTime.Now)
+            {
+                result.Add(new Rental(rental));
+            }
+        }
+        return result;
+    }
+
     private static bool IsRentalValid(Rental rental)
     {
-        try
-        {
-            User? vu = UserManager.GetUserById(rental.UserId);
-            Device? vd = DeviceManager.GetDeviceById(rental.DeviceId);
-            
-            if (vu == null || vd == null || !vd.Available) return false;
-        }
-        catch (Exception e)
-        {
-            return false;
-        }
+        if (!UserManager.UserExists(rental.UserId) || !DeviceManager.DeviceExists(rental.DeviceId) || !DeviceManager.DeviceAvailable(rental.DeviceId)) return false;
         
         foreach (Rental existing in rentals)
         {
             if (existing.UserId == rental.UserId && existing.DeviceId == rental.DeviceId) return false;
         }
-
-        User user = UserManager.GetUserById(rental.UserId);
-        if (user == null) return false;
         
-        switch (user.UserType)
+        switch (UserManager.GetUserCopyById(rental.UserId).UserType)
         {
             case UserType.Student:
                 if (GetRentalsCopyByUserId(rental.UserId).Count >= 2)

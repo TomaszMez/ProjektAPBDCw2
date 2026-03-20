@@ -38,7 +38,7 @@ public static class UserManager
         return result;
     }
     
-    public static User? GetUserById(int id)
+    public static User? GetUserCopyById(int id)
     {
         foreach (User user in users)
         {
@@ -46,6 +46,25 @@ public static class UserManager
         }
 
         return null;
+    }
+    
+    private static User? GetUserById(int id)
+    {
+        foreach (User user in users)
+        {
+            if (user.Id == id) return user;
+        }
+
+        return null;
+    }
+    
+    public static bool UserExists(int id)
+    {
+        foreach (User user in users)
+        {
+            if (user.Id == id) return true;
+        }
+        return false;
     }
     
     public static void RemoveUserById(int id)

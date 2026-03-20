@@ -53,13 +53,40 @@ public static class DeviceManager
         return result;
     }
 
-    public static Device? GetDeviceById(int id)
+    public static Device? GetDeviceCopyById(int id)
     {
         foreach (Device device in devices)
         {
             if (device.Id == id) return Device.DeepCopyDevice(device);
         }
         return null;
+    }
+
+    private static Device? GetDeviceById(int id)
+    {
+        foreach (Device device in devices)
+        {
+            if (device.Id == id) return device;
+        }
+        return null;
+    }
+
+    public static bool DeviceExists(int id)
+    {
+        foreach (Device device in devices)
+        {
+            if (device.Id == id) return true;
+        }
+        return false;
+    }
+
+    public static bool DeviceAvailable(int id)
+    {
+        foreach (Device device in devices)
+        {
+            if (device.Id == id) return device.Available;
+        }
+        return false;
     }
     
     public static void RemoveDeviceById(int id)
