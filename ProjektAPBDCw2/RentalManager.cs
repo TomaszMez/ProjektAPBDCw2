@@ -24,6 +24,16 @@ public static class RentalManager
         return new Rental(int.Parse(fields[0]), int.Parse(fields[1]), DateTime.Parse(fields[2]), DateTime.Parse(fields[3]));
     }
 
+    public static List<Rental> GetRentalsCopy()
+    {
+        List<Rental> result = new List<Rental>();
+        foreach (Rental rental in rentals)
+        {
+            result.Add(new Rental(rental));
+        }
+        return result;
+    }
+
     public static List<Rental> GetRentalsCopyByUserId(int id)
     {
         List<Rental> result = new List<Rental>();
