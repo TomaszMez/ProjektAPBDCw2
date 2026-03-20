@@ -3,7 +3,7 @@
 
 public static class UserManager
 {
-    public static List<Device> Devices { get; } = new List<Device>();
+    public static List<Device> devices = new List<Device>();
 
     public static Device StringToDevice(String inputStr)
     {
@@ -37,20 +37,20 @@ public static class UserManager
 
     public static Device GetDeviceById(int id)
     {
-        foreach (Device device in Devices)
+        foreach (Device device in devices)
         {
-            if (device.Id == id) return device;
+            if (device.Id == id) return Device.DeepCopyDevice(device);
         }
         throw new Exception("Device not found");
     }
     
     public static void RemoveDeviceById(int id)
     {
-        foreach (Device device in Devices)
+        foreach (Device device in devices)
         {
             if (device.Id == id)
             {
-                Devices.Remove(device);
+                devices.Remove(device);
                 return;
             }
         }

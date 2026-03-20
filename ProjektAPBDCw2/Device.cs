@@ -18,4 +18,22 @@ public abstract class Device
         
         Available = true;
     }
+
+    public static Device DeepCopyDevice(Device device)
+    {
+        switch (device)
+        {
+            case Laptop:
+                Laptop tclp = (Laptop)device;
+                return (Device)(new Laptop(tclp.Name, tclp.Manufacturer, tclp.Price, tclp.BatteryTime, tclp.HasWebcam));
+            case Camera:
+                Camera tccm = (Camera)device;
+                return (Device)(new Camera(tccm.Name, tccm.Manufacturer, tccm.Price, tccm.Resolution, tccm.LensExchangeable));
+            case Projector:
+                Projector tcpj = (Projector)device;
+                return (Device)(new Projector(tcpj.Name, tcpj.Manufacturer, tcpj.Price, tcpj.Brightness, tcpj.MaxRange));
+            default:
+                throw new Exception("Nieznany typ urzadzenia");
+        }
+    }
 }
