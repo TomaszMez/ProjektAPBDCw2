@@ -25,7 +25,7 @@ public class RentalManager
 
     public void EndRental(int userId, int deviceId)
     {
-        Rental? rental = GetExactRental(userId, deviceId);
+        Rental? rental = GetRentalRef(userId, deviceId);
         if (rental == null) throw new Exception("Nie ma takiego wypozyczenia");
         else if (rental.ActualReturnDate != null) throw new Exception("To wypozyczenie juz sie zakonczylo");
         
@@ -33,7 +33,7 @@ public class RentalManager
         _deviceAvailabilityWriter.SetDeviceAvailableById(rental.DeviceId, true);
     }
 
-    public List<Rental> GetRentalsCopy()
+    public List<Rental> GetRentals()
     {
         List<Rental> result = new List<Rental>();
         foreach (Rental rental in rentals)
@@ -54,7 +54,7 @@ public class RentalManager
         return result;
     }
 
-    public List<Rental> GetRentalsCopyByUserId(int id)
+    public List<Rental> GetRentalsByUserId(int id)
     {
         List<Rental> result = new List<Rental>();
         foreach (Rental rental in rentals)
@@ -67,7 +67,7 @@ public class RentalManager
         return result;
     }
     
-    public List<Rental> GetRentalsCopyByDeviceId(int id)
+    public List<Rental> GetRentalsByDeviceId(int id)
     {
         List<Rental> result = new List<Rental>();
         foreach (Rental rental in rentals)
@@ -80,7 +80,7 @@ public class RentalManager
         return result;
     }
 
-    public Rental? GetExactRentalCopy(int userId, int deviceId)
+    public Rental? GetRental(int userId, int deviceId)
     {
         foreach (Rental rental in rentals)
         {
@@ -93,7 +93,7 @@ public class RentalManager
         return null;
     }
     
-    private Rental? GetExactRental(int userId, int deviceId)
+    private Rental? GetRentalRef(int userId, int deviceId)
     {
         foreach (Rental rental in rentals)
         {
@@ -106,7 +106,7 @@ public class RentalManager
         return null;
     }
 
-    public List<Rental> GetExpiredRentalsCopy()
+    public List<Rental> GetExpiredRentals()
     {
         List<Rental> result = new List<Rental>();
         foreach (Rental rental in rentals)
@@ -121,21 +121,21 @@ public class RentalManager
 
     private bool IsRentalValid(Rental rental)
     {
-        if (!_userLookup.UserExists(rental.UserId) || !_deviceLookup.DeviceExists(rental.DeviceId) || !_deviceLookup.DeviceAvailable(rental.DeviceId)) return false;
+        if (!_userLookup.UserExists(rental.UserId) || !_deviceLookup.DeviceExists(rental.DeviceId) || !_deviceLookup.IsDeviceAvailable(rental.DeviceId)) return false;
         
         foreach (Rental existing in rentals)
         {
             if (existing.UserId == rental.UserId && existing.DeviceId == rental.DeviceId) return false;
         }
         
-        switch (_userLookup.GetUserCopyById(rental.UserId).UserType)
+        switch (_userLookup.GetUserById(rental.UserId).UserType)
         {
             case UserType.Student:
-                if (GetRentalsCopyByUserId(rental.UserId).Count >= 2)
+                if (GetRentalsByUserId(rental.UserId).Count >= 2)
                     return false;
                 break;
             case UserType.Employee:
-                if (GetRentalsCopyByUserId(rental.UserId).Count >= 5)
+                if (GetRentalsByUserId(rental.UserId).Count >= 5)
                     return false;
                 break;
         }

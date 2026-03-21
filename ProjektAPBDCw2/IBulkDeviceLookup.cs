@@ -2,7 +2,7 @@
 
 public interface IBulkDeviceLookup
 {
-    public List<Device> GetDevicesCopy();
+    public List<Device> GetDevices();
     public List<Device> GetAvailableDevices();
     
 }

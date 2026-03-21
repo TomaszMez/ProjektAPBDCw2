@@ -6,12 +6,12 @@ public class UserManager : IUserLookup,  IBulkUserLookup
 
     public void AddUser(User user)
     {
-        if (GetUserById(user.Id)!=null) throw new Exception("Juz istnieje uzytkownik o tym id");
+        if (GetUserRefById(user.Id)!=null) throw new Exception("Juz istnieje uzytkownik o tym id");
         
         users.Add(user);
     }
 
-    public List<User> GetUsersCopy()
+    public List<User> GetUsers()
     {
         List<User> result = new List<User>();
         foreach (User user in users)
@@ -21,7 +21,7 @@ public class UserManager : IUserLookup,  IBulkUserLookup
         return result;
     }
     
-    public User? GetUserCopyById(int id)
+    public User? GetUserById(int id)
     {
         foreach (User user in users)
         {
@@ -31,7 +31,7 @@ public class UserManager : IUserLookup,  IBulkUserLookup
         return null;
     }
     
-    private User? GetUserById(int id)
+    private User? GetUserRefById(int id)
     {
         foreach (User user in users)
         {

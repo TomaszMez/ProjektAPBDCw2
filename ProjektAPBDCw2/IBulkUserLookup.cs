@@ -2,6 +2,6 @@
 
 public interface IBulkUserLookup
 {
-    public List<User> GetUsersCopy();
+    public List<User> GetUsers();
     
 }

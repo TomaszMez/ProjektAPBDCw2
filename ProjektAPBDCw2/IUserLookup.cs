@@ -2,6 +2,6 @@
 
 public interface IUserLookup
 {
-    public User? GetUserCopyById(int id);
+    public User? GetUserById(int id);
     public bool UserExists(int id);
 }

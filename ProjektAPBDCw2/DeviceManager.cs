@@ -7,12 +7,12 @@ public class DeviceManager : IDeviceLookup, IDeviceAvailabilityWriter, IBulkDevi
     public void AddDevice(Device device)
     {
         
-        if (GetDeviceById(device.Id)!=null) throw new Exception("Juz istnieje urzadzenie o tym id");
+        if (GetDeviceRefById(device.Id)!=null) throw new Exception("Juz istnieje urzadzenie o tym id");
         
         devices.Add(device);
     }
 
-    public List<Device> GetDevicesCopy()
+    public List<Device> GetDevices()
     {
         List<Device> result = new List<Device>();
         foreach (Device device in devices)
@@ -33,7 +33,7 @@ public class DeviceManager : IDeviceLookup, IDeviceAvailabilityWriter, IBulkDevi
         return result;
     }
 
-    public Device? GetDeviceCopyById(int id)
+    public Device? GetDeviceById(int id)
     {
         foreach (Device device in devices)
         {
@@ -42,7 +42,7 @@ public class DeviceManager : IDeviceLookup, IDeviceAvailabilityWriter, IBulkDevi
         return null;
     }
 
-    private Device? GetDeviceById(int id)
+    private Device? GetDeviceRefById(int id)
     {
         foreach (Device device in devices)
         {
@@ -60,7 +60,7 @@ public class DeviceManager : IDeviceLookup, IDeviceAvailabilityWriter, IBulkDevi
         return false;
     }
 
-    public bool DeviceAvailable(int id)
+    public bool IsDeviceAvailable(int id)
     {
         foreach (Device device in devices)
         {

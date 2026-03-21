@@ -18,11 +18,11 @@ public class RentalReporter
     public string GenerateReport()
     {
         StringBuilder sb = new StringBuilder();
-        int dcnt = _devices.GetDevicesCopy().Count;
+        int dcnt = _devices.GetDevices().Count;
         int adcnt = _devices.GetAvailableDevices().Count;
-        int ucnt = _users.GetUsersCopy().Count;
-        int rcnt = _rentals.GetRentalsCopy().Count;
-        int ercnt = _rentals.GetExpiredRentalsCopy().Count;
+        int ucnt = _users.GetUsers().Count;
+        int rcnt = _rentals.GetRentals().Count;
+        int ercnt = _rentals.GetExpiredRentals().Count;
 
         sb.AppendLine($"Zarejestrowanych uzytkownikow: {ucnt}");
         sb.AppendLine($"Zarejestrowanych urzadzen: {dcnt}");
