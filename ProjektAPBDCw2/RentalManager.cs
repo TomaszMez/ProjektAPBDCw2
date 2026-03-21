@@ -123,11 +123,6 @@ public class RentalManager
     {
         if (!_userLookup.UserExists(rental.UserId) || !_deviceLookup.DeviceExists(rental.DeviceId) || !_deviceLookup.IsDeviceAvailable(rental.DeviceId)) return false;
         
-        foreach (Rental existing in rentals)
-        {
-            if (existing.UserId == rental.UserId && existing.DeviceId == rental.DeviceId) return false;
-        }
-        
         switch (_userLookup.GetUserById(rental.UserId).UserType)
         {
             case UserType.Student:
