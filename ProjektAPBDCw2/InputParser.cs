@@ -37,13 +37,13 @@ public static class InputParser
         {
             case "Laptop":
                 if (fields.Length != 6) throw new Exception("Za malo danych");
-                return new Laptop(fields[1], (Manufacturer) m, int.Parse(fields[3]), float.Parse(fields[4]), bool.Parse(fields[5]));
+                return new Laptop(fields[1], (Manufacturer) m, float.Parse(fields[3]), float.Parse(fields[4]), bool.Parse(fields[5]));
             case "Camera":
                 if (fields.Length != 6) throw new Exception("Za malo danych");
-                return new Camera(fields[1], (Manufacturer) m, int.Parse(fields[3]), int.Parse(fields[4]), bool.Parse(fields[5]));
+                return new Camera(fields[1], (Manufacturer) m, float.Parse(fields[3]), int.Parse(fields[4]), bool.Parse(fields[5]));
             case "Projector":
                 if (fields.Length != 6) throw new Exception("Za malo danych");
-                return new Projector(fields[1], (Manufacturer) m, int.Parse(fields[3]), int.Parse(fields[4]), int.Parse(fields[5]));
+                return new Projector(fields[1], (Manufacturer) m, float.Parse(fields[3]), int.Parse(fields[4]), int.Parse(fields[5]));
             default:
                 throw new Exception("Nieznany typ urzadzenia");
         }

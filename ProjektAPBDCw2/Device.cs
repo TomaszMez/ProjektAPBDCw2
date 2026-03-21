@@ -7,9 +7,9 @@ public abstract class Device
     public int Id { get; }
     public string Name { get; }
     public Manufacturer Manufacturer { get; }
-    public int Price { get; }
+    public float Price { get; }
     public bool Available { get; set; }
-    protected Device(string name, Manufacturer manufacturer, int price) 
+    protected Device(string name, Manufacturer manufacturer, float price) 
     {
         Id = _idCounter++;
         Name = name;

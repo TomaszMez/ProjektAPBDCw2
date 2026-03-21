@@ -44,7 +44,7 @@ public class Rental
 
     public override string ToString()
     {
-        return $"UID: {UserId}, DID: {DeviceId}, Data: {RentalDate}, Termin: {AgreedReturnDate}, Zwrot: {ActualReturnDate}, Na czas: {IsOnTime}, Kara: {Penalty}";
+        return $"UID: {UserId}, DID: {DeviceId}, Data: {RentalDate}, Termin: {AgreedReturnDate}, Zwrot: {ActualReturnDate}, Na czas: " + (IsOnTime != null ? ((bool)IsOnTime ? "Tak" : "Nie") : "") + $", Kara: {Penalty}";
     }
     
 }
