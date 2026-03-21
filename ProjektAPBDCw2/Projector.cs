@@ -17,6 +17,11 @@ public class Projector : Device
         MaxRange = other.MaxRange;
     }
     
+    public override Device Copy()
+    {
+        return (Device)(new Projector(this));
+    }
+    
     public override string ToString()
     {
         return $"ID: {Id}, Typ: Projektor, Nazwa: {Name}, Producent: {Manufacturer}, Cena (PLN): {Price}, Jasnosc (lm): {Brightness}, Maks. Zasieg: {MaxRange}"

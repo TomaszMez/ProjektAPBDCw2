@@ -17,6 +17,11 @@ public class Laptop : Device
         HasWebcam = other.HasWebcam;
     }
 
+    public override Device Copy()
+    {
+        return (Device)(new Laptop(this));
+    }
+
     public override string ToString()
     {
         return $"ID: {Id}, Typ: Laptop, Nazwa: {Name}, Producent: {Manufacturer}, Cena (PLN): {Price}, Czas Baterii (h): {BatteryTime}, Kamerka: " + (HasWebcam ? "Tak" : "Nie")

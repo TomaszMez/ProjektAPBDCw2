@@ -17,6 +17,11 @@ public class Camera : Device
         LensExchangeable = other.LensExchangeable;
     }
     
+    public override Device Copy()
+    {
+        return (Device)(new Camera(this));
+    }
+    
     public override string ToString()
     {
         return $"ID: {Id}, Typ: Aparat, Nazwa: {Name}, Producent: {Manufacturer}, Cena (PLN): {Price}, Rozdzielczosc (mp): {Resolution}, Wymienny obiektyw: " + (LensExchangeable ? "Tak" : "Nie")

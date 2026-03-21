@@ -28,23 +28,7 @@ public abstract class Device
         Available = other.Available;
     }
 
-    public static Device DeepCopyDevice(Device device)
-    {
-        switch (device)
-        {
-            case Laptop:
-                Laptop tclp = (Laptop)device;
-                return (Device)(new Laptop(tclp));
-            case Camera:
-                Camera tccm = (Camera)device;
-                return (Device)(new Camera(tccm));
-            case Projector:
-                Projector tcpj = (Projector)device;
-                return (Device)(new Projector(tcpj));
-            default:
-                throw new Exception("Nieznany typ urzadzenia");
-        }
-    }
+    public abstract Device Copy();
     
     public abstract override string ToString();
 }

@@ -1,34 +1,17 @@
 ﻿namespace ProjektAPBDCw2;
 
-public static class UserManager
+public class UserManager : IUserLookup
 {
-    private static List<User> users = new List<User>();
+    private List<User> users = new List<User>();
 
-    public static User StringToUser(String inputStr)
-    {
-        string[] fields = inputStr.Split(' ');
-        if (fields.Length != 3) throw new Exception("Invalid input");
-
-        int ut = -1;
-        foreach (UserType type in Enum.GetValues(typeof(UserType)))
-        {
-            if (fields[2].Equals(type.ToString()))
-            {
-                ut = (int) type;
-            }
-        }
-        if (ut == -1) throw new Exception("Invalid input");
-        return new User(fields[0], fields[1], (UserType) ut);
-    }
-
-    public static void AddUser(User user)
+    public void AddUser(User user)
     {
         if (GetUserById(user.Id)!=null) throw new Exception("Juz istnieje uzytkownik o tym id");
         
         users.Add(user);
     }
 
-    public static List<User> GetUsersCopy()
+    public List<User> GetUsersCopy()
     {
         List<User> result = new List<User>();
         foreach (User user in users)
@@ -38,7 +21,7 @@ public static class UserManager
         return result;
     }
     
-    public static User? GetUserCopyById(int id)
+    public User? GetUserCopyById(int id)
     {
         foreach (User user in users)
         {
@@ -48,7 +31,7 @@ public static class UserManager
         return null;
     }
     
-    private static User? GetUserById(int id)
+    private User? GetUserById(int id)
     {
         foreach (User user in users)
         {
@@ -58,7 +41,7 @@ public static class UserManager
         return null;
     }
     
-    public static bool UserExists(int id)
+    public bool UserExists(int id)
     {
         foreach (User user in users)
         {
@@ -67,7 +50,7 @@ public static class UserManager
         return false;
     }
     
-    public static void RemoveUserById(int id)
+    public void RemoveUserById(int id)
     {
         for (int i = 0; i < users.Count; i++)
         {
