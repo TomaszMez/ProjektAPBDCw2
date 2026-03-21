@@ -48,7 +48,7 @@ public class RentalManager
         List<Rental> result = new List<Rental>();
         foreach (Rental rental in rentals)
         {
-            if(rental.ActualReturnDate == null) 
+            if(rental.UserId == userId && rental.ActualReturnDate == null) 
                 result.Add(new Rental(rental));
         }
         return result;
@@ -111,7 +111,7 @@ public class RentalManager
         List<Rental> result = new List<Rental>();
         foreach (Rental rental in rentals)
         {
-            if (rental.AgreedReturnDate < rental.ActualReturnDate)
+            if (rental.ActualReturnDate == null && rental.AgreedReturnDate < DateTime.Now)
             {
                 result.Add(new Rental(rental));
             }
