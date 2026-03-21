@@ -2,7 +2,7 @@
 
 public class DeviceManager : IDeviceLookup, IDeviceAvailabilityWriter
 {
-    public List<Device> devices = new List<Device>();
+    private List<Device> devices = new List<Device>();
     
     public void AddDevice(Device device)
     {

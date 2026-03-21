@@ -8,10 +8,11 @@ public class RentalManager
     private IDeviceLookup _deviceLookup;
     private IDeviceAvailabilityWriter _deviceAvailabilityWriter;
 
-    public RentalManager(IUserLookup userLookup, IDeviceLookup deviceLookup)
+    public RentalManager(IUserLookup userLookup, IDeviceLookup deviceLookup, IDeviceAvailabilityWriter deviceAvailabilityWriter)
     {
         this._userLookup = userLookup;
         this._deviceLookup = deviceLookup;
+        this._deviceAvailabilityWriter = deviceAvailabilityWriter;
     }
 
     public void AddRental(Rental rental)
