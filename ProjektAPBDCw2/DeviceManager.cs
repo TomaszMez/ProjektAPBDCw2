@@ -1,6 +1,6 @@
 ﻿namespace ProjektAPBDCw2;
 
-public class DeviceManager : IDeviceLookup, IDeviceAvailabilityWriter
+public class DeviceManager : IDeviceLookup, IDeviceAvailabilityWriter, IBulkDeviceLookup
 {
     private List<Device> devices = new List<Device>();
     

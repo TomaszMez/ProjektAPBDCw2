@@ -1,6 +1,6 @@
 ﻿namespace ProjektAPBDCw2;
 
-public class UserManager : IUserLookup
+public class UserManager : IUserLookup,  IBulkUserLookup
 {
     private List<User> users = new List<User>();
 
