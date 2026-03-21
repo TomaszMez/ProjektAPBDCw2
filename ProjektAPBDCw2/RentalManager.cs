@@ -111,7 +111,7 @@ public class RentalManager
         List<Rental> result = new List<Rental>();
         foreach (Rental rental in rentals)
         {
-            if (rental.AgreedReturnDate < DateTime.Now)
+            if (rental.AgreedReturnDate < rental.ActualReturnDate)
             {
                 result.Add(new Rental(rental));
             }
