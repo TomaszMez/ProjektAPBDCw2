@@ -42,6 +42,17 @@ public class RentalManager
         }
         return result;
     }
+    
+    public List<Rental> GetActiveRentalsByUserId(int userId)
+    {
+        List<Rental> result = new List<Rental>();
+        foreach (Rental rental in rentals)
+        {
+            if(rental.ActualReturnDate == null) 
+                result.Add(new Rental(rental));
+        }
+        return result;
+    }
 
     public List<Rental> GetRentalsCopyByUserId(int id)
     {

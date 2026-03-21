@@ -22,6 +22,17 @@ public class DeviceManager : IDeviceLookup, IDeviceAvailabilityWriter
         return result;
     }
 
+    public List<Device> GetAvailableDevices()
+    {
+        List<Device> result = new List<Device>();
+        foreach (Device device in devices)
+        {
+            if(device.Available)
+                result.Add(device.Copy());
+        }
+        return result;
+    }
+
     public Device? GetDeviceCopyById(int id)
     {
         foreach (Device device in devices)
