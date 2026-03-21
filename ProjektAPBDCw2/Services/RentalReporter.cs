@@ -6,9 +6,9 @@ public class RentalReporter
 {
     private IBulkDeviceLookup _devices;
     private IBulkUserLookup _users;
-    private RentalManager _rentals;
+    private IBulkRentalLookup _rentals;
 
-    public RentalReporter(IBulkUserLookup users, IBulkDeviceLookup devices, RentalManager rentals)
+    public RentalReporter(IBulkUserLookup users, IBulkDeviceLookup devices, IBulkRentalLookup rentals)
     {
         _users = users;
         _devices = devices;

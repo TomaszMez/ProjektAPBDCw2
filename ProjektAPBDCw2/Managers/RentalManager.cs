@@ -1,6 +1,6 @@
 ﻿namespace ProjektAPBDCw2;
 
-public class RentalManager
+public class RentalManager : IBulkRentalLookup
 {
     private List<Rental> rentals = new List<Rental>();
     
