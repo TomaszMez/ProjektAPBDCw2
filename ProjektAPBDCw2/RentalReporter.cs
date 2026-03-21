@@ -8,10 +8,10 @@ public class RentalReporter
     private IBulkUserLookup _users;
     private RentalManager _rentals;
 
-    public RentalReporter(IBulkDeviceLookup devices, IBulkUserLookup users, RentalManager rentals)
+    public RentalReporter(IBulkUserLookup users, IBulkDeviceLookup devices, RentalManager rentals)
     {
-        _devices = devices;
         _users = users;
+        _devices = devices;
         _rentals = rentals;
     }
 
