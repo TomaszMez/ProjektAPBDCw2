@@ -131,11 +131,11 @@ public class RentalManager
         switch (_userLookup.GetUserById(rental.UserId).UserType)
         {
             case UserType.Student:
-                if (GetRentalsByUserId(rental.UserId).Count >= 2)
+                if (GetActiveRentalsByUserId(rental.UserId).Count >= 2)
                     return false;
                 break;
             case UserType.Employee:
-                if (GetRentalsByUserId(rental.UserId).Count >= 5)
+                if (GetActiveRentalsByUserId(rental.UserId).Count >= 5)
                     return false;
                 break;
         }
