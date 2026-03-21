@@ -21,6 +21,7 @@ Console.WriteLine(string.Join("\r\n", um.GetUsers()));
 
 rm.AddRental(InputParser.StringToRental("2 0 20/03/2026 20/04/2026"));
 rm.AddRental(InputParser.StringToRental("2 1 20/03/2026 20/04/2026"));
+//Proba przekroczenia limitu
 try
 {
     rm.AddRental(InputParser.StringToRental("2 2 20/03/2026 20/04/2026"));
